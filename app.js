@@ -1,17 +1,23 @@
 /**
- * Working with directories
+ * Setting up a server
+ *  How to run:
+ *      1. $ node app
+ *      2. visit 127.0.0.1:3000 on browser
  */
 
-const fs = require('fs');
 
+const http = require('http');
 
+const server = http.createServer(function(req, res) {
 
-// async operation (sync version: mkdirSync())
-fs.mkdir('myNewDirectory', function() {
-    fs.writeFile('./myNewDirectory/ramblings.txt', 'The universe is big');
-});
+    // Configure the header of the response
+    res.writeHead(200, {'Content-Type': 'text/plain'});
 
-// We must delete all files from a directory before deleting the directory itself
-// fs.unlink('./myNewDirectory/ramblings.txt', function() {
-//     fs.rmdir('myNewDirectory');
-// });
+    // End the response by sending data back to the browser
+    res.end('Hello Node Server');
+})
+
+//
+server.listen(3000, '127.0.0.1');
+
+console.log('Listening on 127.0.0.1:3000');
