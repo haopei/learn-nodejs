@@ -1,27 +1,18 @@
-const events = require('events');
-const util = require('util');
-
-// define person
-function Bud(name) {
-    this.name = name;
-}
+/**
+ * Using fs to read and write files (synchronously)
+ */
 
 
-// make person inherit event emitter
-util.inherits(Bud, events.EventEmitter)
+const fs = require('fs');
 
 
-// Create event handlers for each person
-let mik = new Bud('Mik');
-let lee = new Bud('Lee');
+// When fs reads a file, it reads in binary.
+// The 'utf8' encoding tells Node to convert binary to readable format
+// Sync explicitly tells node that this is a blocking sync function
+let readMeContent = fs.readFileSync('README.md', 'utf8');
 
-let buds = [lee, mik];
-buds.forEach(function(bud) {
-    bud.on('speak', function(msg) {
-        console.log(bud.name + ': ' + msg)
-    })
-})
+console.log(typeof readMeContent);
+// string
 
-// person emits and event
-mik.emit('speak', 'I am a chef!');
-lee.emit('speak', 'What yall want do?');
+// Write to another file
+fs.writeFileSync('write-to-me.txt', readMeContent);
