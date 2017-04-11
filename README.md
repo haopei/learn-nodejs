@@ -1,1 +1,5 @@
-Tutorial link: https://www.youtube.com/watch?v=PY-AycMkEAg&list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp#t=284.570424
+# About
+This repo contains code which follows the [this tutorial](https://www.youtube.com/watch?v=PY-AycMkEAg)
+
+## How to use
+Run `$ git log` to see list of commits — each representing a snapshot of how to do something in NodeJS, Express and EmbeddedJS.

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Contact Me</title>
+    </head>
+    <body>
+        <!-- Visit http://127.0.0.1:3000/contact?name=haopei&email=haopeiyang@gmail.com -->
+        <form>
+            <div class="form-item">
+                <label for="">Name</label>
+                <input type="text" value="<%= query.name %>">
+            </div>
+            <div class="form-item">
+                <label for="">Email</label>
+                <input type="text" value="<%= query.email %>">
+            </div>
+            <button type="button" name="button">Submit <%= query.name %> </button>
+        </form>
+    </body>
+</html>
