@@ -6,6 +6,9 @@ const app = express();
 // let express know that we are using ejs as 'view engine'
 app.set('view engine', 'ejs');
 
+// Give access to static directories
+app.use('/assets', express.static('assets'))
+
 app.get('/profile/:id', function(req, res) {
     // fetch data from datastore
     let data = {
