@@ -1,14 +1,27 @@
 const events = require('events');
+const util = require('util');
 
-// Create a new EventEmitter instance
-myEmitter = new events.EventEmitter();
+// define person
+function Bud(name) {
+    this.name = name;
+}
 
-// Set up an event listener which listens for the event name 'event'
-// which is then handled by the callback function,
-// which takes data received from the emitted event
-myEmitter.on('something', function(data) {
-    console.log(data.greeting + 'NodeJS Events!');
+
+// make person inherit event emitter
+util.inherits(Bud, events.EventEmitter)
+
+
+// Create event handlers for each person
+let mik = new Bud('Mik');
+let lee = new Bud('Lee');
+
+let buds = [lee, mik];
+buds.forEach(function(bud) {
+    bud.on('speak', function(msg) {
+        console.log(bud.name + ': ' + msg)
+    })
 })
 
-// Emit and event, and data to the event handler that is responsible for this event
-myEmitter.emit('something', { greeting: 'Hello, ' });
+// person emits and event
+mik.emit('speak', 'I am a chef!');
+lee.emit('speak', 'What yall want do?');
