@@ -1,18 +1,11 @@
-/**
- * Piping data from ReadStream to server response
- */
-
-const fs = require('fs');
 const http = require('http');
+const fs = require('fs')
 
 const server = http.createServer(function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-
-    // A stream of incoming data (from read-from-me.txt)
-    // is piped towards the server response
-    const readStream = fs.createReadStream(__dirname + '/read-from-me.txt', 'utf8');
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    const readStream = fs.createReadStream('./res.html', 'utf8');
     readStream.pipe(res);
 });
 
 server.listen('3000', '127.0.0.1');
-console.log('listening on 127.0.0.1:3000');
+console.log('listening on port 3000');
