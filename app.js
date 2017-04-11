@@ -5,14 +5,14 @@
 
 const fs = require('fs');
 
+// readFile is async; readFileSync is sync.
+fs.readFile('README.md', 'utf8', function(err, data) {
+    // This body runs after the async operation of reading completes
+    console.log('2')
+    fs.writeFile('write-to-me.txt', data);
+});
 
-// When fs reads a file, it reads in binary.
-// The 'utf8' encoding tells Node to convert binary to readable format
-// Sync explicitly tells node that this is a blocking sync function
-let readMeContent = fs.readFileSync('README.md', 'utf8');
 
-console.log(typeof readMeContent);
-// string
-
-// Write to another file
-fs.writeFileSync('write-to-me.txt', readMeContent);
+// '1' prints before '2' because fs.readFile immediately returns
+// after sending fs.writeFile() to run asynchronously in another context
+console.log('1');
