@@ -1,19 +1,18 @@
 /**
- * Sending stream of data using pipes.
+ * Piping data from ReadStream to server response
  */
 
 const fs = require('fs');
+const http = require('http');
 
-// Create a WriteStream object
-let myReadStream = fs.createReadStream(__dirname + '/read-from-me.txt', 'utf8');
+const server = http.createServer(function(req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
 
-// Create WriteStream
-let myWriteStream = fs.createWriteStream(__dirname + '/write-to-me.txt');
+    // A stream of incoming data (from read-from-me.txt)
+    // is piped towards the server response
+    const readStream = fs.createReadStream(__dirname + '/read-from-me.txt', 'utf8');
+    readStream.pipe(res);
+});
 
-// this function...
-myReadStream.pipe(myWriteStream);
-
-// ...same as this
-// myReadStream.on('data', function(chunk) {
-//     myWriteStream.write(chunk);
-// });
+server.listen('3000', '127.0.0.1');
+console.log('listening on 127.0.0.1:3000');
