@@ -1,23 +1,15 @@
 /**
- * Setting up a server
- *  How to run:
- *      1. $ node app
- *      2. visit 127.0.0.1:3000 on browser
+ * Readable streams
  */
 
+const fs = require('fs');
 
-const http = require('http');
+// Create a readstream object
+let myReadStream = fs.createReadStream(__dirname + '/lorem.txt', 'utf8');
+console.log(myReadStream);
 
-const server = http.createServer(function(req, res) {
-
-    // Configure the header of the response
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-
-    // End the response by sending data back to the browser
-    res.end('Hello Node Server');
-})
-
-//
-server.listen(3000, '127.0.0.1');
-
-console.log('Listening on 127.0.0.1:3000');
+// The ReadStream object inherits the EventEmitter object.
+// It listens for the 'data' event which indicates that a new 'buffer' of data has arrived
+myReadStream.on('data', function(chunk) {
+    console.log('new chunk of data received: ', chunk);
+});
