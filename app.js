@@ -1,18 +1,17 @@
 /**
- * Using fs to read and write files (synchronously)
+ * Working with directories
  */
-
 
 const fs = require('fs');
 
-// readFile is async; readFileSync is sync.
-fs.readFile('README.md', 'utf8', function(err, data) {
-    // This body runs after the async operation of reading completes
-    console.log('2')
-    fs.writeFile('write-to-me.txt', data);
+
+
+// async operation (sync version: mkdirSync())
+fs.mkdir('myNewDirectory', function() {
+    fs.writeFile('./myNewDirectory/ramblings.txt', 'The universe is big');
 });
 
-
-// '1' prints before '2' because fs.readFile immediately returns
-// after sending fs.writeFile() to run asynchronously in another context
-console.log('1');
+// We must delete all files from a directory before deleting the directory itself
+// fs.unlink('./myNewDirectory/ramblings.txt', function() {
+//     fs.rmdir('myNewDirectory');
+// });
