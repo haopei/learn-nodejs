@@ -10,5 +10,12 @@
         <p>Name: <%= data.name %></p>
         <p>Location: <%= data.location %></p>
 
+        <h2>Hobbies</h2>
+        <ul>
+            <% data.hobbies.forEach(function(hobby) { %>
+                <li><%= hobby %></li>
+            <% }) %>
+        </ul>
+
     </body>
 </html>

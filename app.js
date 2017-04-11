@@ -10,7 +10,8 @@ app.get('/profile/:id', function(req, res) {
     // fetch data from datastore
     let data = {
         name: 'Haopei',
-        location: 404
+        location: 404,
+        hobbies: ['eating', 'learning','poker']
     }
 
     // 'profile' corresponds to profile.ejs inside views
