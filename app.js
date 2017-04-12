@@ -5,7 +5,6 @@ const app = express()
 
 const urlEncodedParser = bodyParser.urlencoded({ extended: false })
 
-
 // let express know that we are using ejs as 'view engine'
 app.set('view engine', 'ejs')
 
