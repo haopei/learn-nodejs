@@ -6,16 +6,16 @@
     </head>
     <body>
         <!-- Visit http://127.0.0.1:3000/contact?name=haopei&email=haopeiyang@gmail.com -->
-        <form>
+        <form action="/contact" method="POST">
             <div class="form-item">
                 <label for="">Name</label>
-                <input type="text" value="<%= query.name %>">
+                <input type="text" name="name" value="<%= query.name %>">
             </div>
             <div class="form-item">
                 <label for="">Email</label>
-                <input type="text" value="<%= query.email %>">
+                <input type="text" name="email" value="<%= query.email %>">
             </div>
-            <button type="button" name="button">Submit <%= query.name %> </button>
+            <button type="submit" name="button">Submit <%= query.name %> </button>
         </form>
     </body>
 </html>
